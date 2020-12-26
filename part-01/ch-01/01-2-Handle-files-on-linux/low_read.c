@@ -9,15 +9,18 @@ int main(void)
 {
 	int fd;
 	char buf[BUF_SIZE];
+	int read_result;
 
 	fd = open("data.txt", O_RDONLY); 
 	if(fd == -1) 
 		error_handling("open() error!");
 	printf("file descriptor: %d \n", fd);
 
-	if(read(fd, buf, sizeof(buf)) == -1)
+	read_result = read(fd, buf, sizeof(buf));
+	if(read_result == -1)
 		error_handling("read() error!");
 	printf("fild data: %s", buf);
+	printf("read result: %d", read_result);
 	close(fd);
 	return 0;
 }
